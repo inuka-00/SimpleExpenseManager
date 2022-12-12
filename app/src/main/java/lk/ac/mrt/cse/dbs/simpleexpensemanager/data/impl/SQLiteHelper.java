@@ -1,7 +1,6 @@
 package lk.ac.mrt.cse.dbs.simpleexpensemanager.data.impl;
 
 import android.content.Context;
-import android.content.SearchRecentSuggestionsProvider;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.support.annotation.Nullable;
@@ -103,7 +102,13 @@ public class SQLiteHelper extends SQLiteOpenHelper {
     @Override
     public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i1) {
 
-        
+        String DROP_ACCOUNT_TABLE = "DROP TABLE IF EXISTS " + ACCOUNT_TABLE;
+        String DROP_TRANSACTION_TABLE = "DROP TABLE IF EXISTS " + TRANSACTION_TABLE;
+
+        sqLiteDatabase.execSQL(DROP_ACCOUNT_TABLE);
+        sqLiteDatabase.execSQL(DROP_TRANSACTION_TABLE);
+
+        onCreate(sqLiteDatabase);
 
     }
 }
