@@ -11,12 +11,14 @@ public class SQLiteHelper extends SQLiteOpenHelper {
     private static final String SQL_Database_Name = "200036T.db";
     private static int VERSION = 1;
 
+    // account table columns
     private static String ACCOUNT_TABLE = "account_table";
     private static String ACCOUNT_NUMBER = "accountNumber";
     private static String ACCOUNT_BANK = "bankName";
     private static String ACCOUNT_HOLDER = "accountHolder";
     private static String ACCOUNT_BALANCE = "balance";
 
+    // transaction columns
     private static String TRANSACTION_TABLE = "transaction_table";
     private static String TRANSACTION_ID = "id";
     private static String TRANSACTION_DATE = "date";
@@ -24,6 +26,7 @@ public class SQLiteHelper extends SQLiteOpenHelper {
     private static String TRANSACTION_EXPENSE_TYPE = "expenseType";
     private static String TRANSACTION_AMOUNT= "amount";
 
+    // getters for the above data
     public SQLiteHelper(@Nullable Context context) {
         super(context, SQL_Database_Name, null, VERSION);
     }
@@ -75,6 +78,7 @@ public class SQLiteHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
 
+        // create account table query
         String queryForCreateAccountTable =
                 "CREATE TABLE " +
                         ACCOUNT_TABLE + " ( " +
@@ -83,7 +87,7 @@ public class SQLiteHelper extends SQLiteOpenHelper {
                         ACCOUNT_HOLDER + " TEXT NOT NULL, "+
                         ACCOUNT_BALANCE + " REAL NOT NULL);";
 
-
+        // create transaction table query
         String queryForCreateTransactionTable =
                 "CREATE TABLE " +
                         TRANSACTION_TABLE + " ( " +
@@ -102,6 +106,7 @@ public class SQLiteHelper extends SQLiteOpenHelper {
     @Override
     public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i1) {
 
+        // for drop table if it want
         String DROP_ACCOUNT_TABLE = "DROP TABLE IF EXISTS " + ACCOUNT_TABLE;
         String DROP_TRANSACTION_TABLE = "DROP TABLE IF EXISTS " + TRANSACTION_TABLE;
 
